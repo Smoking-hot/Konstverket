@@ -1,0 +1,233 @@
+/* =========================================================
+   BHS Konstverket – stilmall
+   Färger och typsnitt ändras under :root.
+   ========================================================= */
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/raleway-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --accent: #f92763;
+  --accent-dark: #d81450;
+  --ink: #141414;
+  --text: #7a7a7a;
+  --muted: #a5a5a5;
+  --light: #f5f5f5;
+  --line: #e2e2e2;
+  --dark: #0b0b0b;
+  --heading: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --max: 1140px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+
+h1, h2, h3 {
+  font-family: var(--heading);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 .6em;
+}
+
+p { margin: 0 0 1em; }
+
+.container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 100;
+  background: #000; color: #fff; padding: 8px 14px;
+}
+.skip-link:focus { left: 10px; top: 10px; }
+
+/* ---------- Sidhuvud ---------- */
+.site-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+}
+.site-header.solid { position: relative; background: var(--dark); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 90px; padding: 0 60px;
+}
+.logo img { width: 160px; }
+
+.main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
+.main-nav a {
+  display: block; padding: 6px 0;
+  color: rgba(255, 255, 255, .6);
+  font-family: var(--heading); font-weight: 700; font-size: 12px;
+  letter-spacing: 2.4px; text-transform: uppercase; text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.main-nav a:hover { color: #fff; }
+.main-nav a[aria-current="page"] { color: #fff; border-bottom-color: #fff; }
+
+@media (max-width: 700px) {
+  .header-inner { padding: 0 20px; min-height: 72px; }
+  .logo img { width: 130px; }
+  .main-nav ul { gap: 14px; }
+  .main-nav a { font-size: 11px; letter-spacing: 1.6px; }
+}
+@media (max-width: 420px) {
+  .header-inner { padding: 0 16px; }
+  .logo img { width: 112px; }
+  .main-nav ul { gap: 12px; }
+  .main-nav a { font-size: 10px; letter-spacing: 1.2px; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: #000 url("../images/hero-bertil.jpg") center top / cover no-repeat;
+  color: #fff;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55) 70%, #000);
+}
+.hero-content { position: relative; z-index: 1; padding: 140px 60px 100px; width: 100%; }
+.hero h1 {
+  color: #fff; font-size: clamp(2.6rem, 6vw, 62px);
+  min-height: 2.3em; margin-bottom: .9em;
+}
+.typed::after {
+  content: "|"; font-weight: 300; margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.hero-sub {
+  font-family: var(--heading); text-transform: uppercase; color: #fff; margin-bottom: 64px;
+}
+.hero-sub strong { display: block; font-size: clamp(1.1rem, 2.2vw, 1.45rem); font-weight: 700; letter-spacing: 2px; }
+.hero-sub span { font-size: 13px; font-weight: 700; letter-spacing: 2.4px; }
+
+@media (max-width: 700px) {
+  .hero-content { padding: 120px 24px 80px; text-align: center; }
+  .hero-sub { margin-bottom: 40px; }
+}
+
+/* ---------- Knappar ---------- */
+.btn {
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  padding: 14px 46px; border: 0; border-radius: 3px;
+  font-family: var(--heading); font-weight: 700; font-size: 13px;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  cursor: pointer; transition: background .2s;
+}
+.btn:hover { background: var(--accent-dark); color: #fff; }
+.btn-dark { background: #333; border-radius: 40px; padding: 14px 32px; }
+.btn-dark:hover { background: #000; }
+
+/* ---------- Delade block ---------- */
+.split { display: grid; grid-template-columns: 1fr 1fr; }
+.split-text { padding: 110px 12% 110px 10%; display: flex; flex-direction: column; justify-content: center; }
+.split-text h2 { font-size: clamp(1.6rem, 2.6vw, 30px); }
+.split-media { min-height: 520px; background: #000 center / cover no-repeat; }
+.divider { width: 120px; height: 1px; background: var(--line); border: 0; margin: 10px 0 40px; }
+.split-text p { font-size: 15px; }
+
+.quote-block { background: var(--light); }
+.quote {
+  position: relative; margin: 0; padding-left: 36px;
+  font-style: italic; font-size: 15px; line-height: 1.75;
+}
+.quote::before {
+  content: "\201C"; position: absolute; left: 0; top: -8px;
+  font-family: Georgia, serif; font-size: 48px; line-height: 1; color: var(--muted);
+}
+.quote footer {
+  margin-top: 20px; text-align: right; font-style: normal;
+  text-transform: uppercase; letter-spacing: .5px; font-size: 14px;
+}
+.media-contain { background-color: #000; background-size: contain; }
+
+@media (max-width: 860px) {
+  .split { grid-template-columns: 1fr; }
+  .split-text { padding: 70px 24px; text-align: center; align-items: center; }
+  .split-media { min-height: 380px; }
+  .split-reverse .split-media { order: -1; }
+  .quote { text-align: left; }
+}
+
+/* ---------- Bokbeställning ---------- */
+.book { background: #fafafa; padding: 130px 0; text-align: center; }
+.kicker {
+  font-family: var(--heading); font-weight: 400; font-size: 12px;
+  letter-spacing: 4.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px;
+}
+.book h2 { font-size: clamp(1.9rem, 4vw, 48px); letter-spacing: 0; }
+.book .divider { margin: 24px auto 40px; }
+.book p { max-width: 560px; margin: 0 auto 40px; font-size: 15px; }
+.btn-small { padding: 10px 24px; font-family: var(--body); font-weight: 400; font-size: 14px; letter-spacing: 0; text-transform: none; }
+
+/* ---------- Undersidor ---------- */
+.page { padding: 70px 0 110px; }
+.page-banner { width: 100%; aspect-ratio: 1536 / 405; object-fit: cover; margin-bottom: 36px; }
+.page h1 { font-size: clamp(1.6rem, 3vw, 30px); margin-bottom: 1.2em; }
+.page .price { font-weight: 600; color: #666; }
+
+.order-form { margin-top: 50px; display: grid; gap: 22px; }
+.order-form label { display: block; font-weight: 600; color: #444; font-size: 15px; margin-bottom: 8px; }
+.order-form .req { color: #e00; }
+.order-form input, .order-form textarea {
+  width: 100%; border: 0; background: var(--light); color: var(--ink);
+  padding: 12px 16px; font: inherit; font-size: 15px; border-radius: 0;
+}
+.order-form input:focus, .order-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+.order-form textarea { min-height: 120px; resize: vertical; }
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 612px; }
+.qty { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.qty input { width: 110px; }
+.qty output { color: #444; }
+.hp { position: absolute; left: -9999px; }
+.notice { padding: 14px 18px; margin: 24px 0 0; background: #fde7ee; color: #8a0f33; }
+@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+
+/* ---------- Sidfot ---------- */
+.site-footer { background: var(--dark); color: #7a7a7a; font-size: 15px; padding: 80px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+.site-footer .logo img { width: 200px; }
+.site-footer h3 { color: #fff; font-size: 13px; margin-bottom: 1.6em; }
+.site-footer a { color: #7a7a7a; text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.contact-list { list-style: none; margin: 0; padding: 0; }
+.contact-list li { display: flex; gap: 10px; align-items: center; }
+.contact-list svg { width: 15px; height: 15px; fill: #fff; flex: none; }
+.footer-bottom { border-top: 1px solid #222; margin-top: 60px; padding: 22px 0 26px; font-size: 14px; }
+@media (max-width: 860px) {
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .site-footer .logo img { margin: 0 auto; }
+  .contact-list li { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed::after { animation: none; }
+  html { scroll-behavior: auto; }
+}
